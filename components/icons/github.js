@@ -16,6 +16,7 @@ export default ({ color }) => (
     <style jsx>{`
       svg {
         width: 22px;
+        height: 22px;
       }
     `}</style>
   </svg>
