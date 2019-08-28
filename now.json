@@ -1,4 +1,5 @@
 {
+  "version": 2,
   "env": {
     "ROOT_URL": "https://nextjs.org",
     "ACCESS_TOKEN_SECRET": "@next-learn-access-token-secret",
@@ -6,6 +7,12 @@
     "GITHUB_CLIENT_SECRET": "@next-learn-github-client-secret",
     "AIRTABLE_API_KEY": "@next-learn-airtable-api-key"
   },
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/next@canary"
+    }
+  ],
   "routes": [
     {
       "src": "/learn/?",
