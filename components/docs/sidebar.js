@@ -1,3 +1,4 @@
+import React from 'react';
 import GithubSlugger from 'github-slugger';
 import Header from '../header';
 import Navbar from '../navbar';
@@ -100,14 +101,14 @@ export function SidebarNavItem({ item }) {
   );
 }
 
-export function SidebarNavItemContainer({ headings }) {
+export function SidebarNavItemContainer({ headings, currentMenuItem }) {
   if (Array.isArray(headings)) {
     return (
       <ul>
         {headings.map((item, i) => {
           if (Array.isArray(item)) {
             return (
-              <li key={i}>
+              <li key={i} style={currentMenuItem === item.id ? { background: 'red' } : {}}>
                 <SidebarNavItemContainer headings={item} />
               </li>
             );
@@ -127,8 +128,9 @@ export function SidebarNavItemContainer({ headings }) {
   return <SidebarNavItem item={headings} />;
 }
 
-export default function Sidebar({ headings, mobile, desktop }) {
+export default function Sidebar({ headings, mobile, desktop, currentMenuItem }) {
   slugifyHeadings(flattenHeadings(headings));
+  console.log('currentMenuItem in sidebar', currentMenuItem);
 
   return (
     <>
@@ -164,7 +166,10 @@ export default function Sidebar({ headings, mobile, desktop }) {
               <div className="documentation__sidebar docs-dropdown">
                 <Container>
                   <nav>
-                    <SidebarNavItemContainer headings={headings} />
+                    <SidebarNavItemContainer
+                      headings={headings}
+                      currentMenuItem={currentMenuItem}
+                    />
                   </nav>
                 </Container>
               </div>
